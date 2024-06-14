@@ -1,3 +1,8 @@
 use<projectPlate.scad>;
+use<TSlotExtrusion.scad>;
 
-projectPlate(0,0,0);
+projectPlate();
+tSlotExtrusion(100);
+
+//Eric Moderbacher
+//6/10/24

@@ -1,4 +1,4 @@
-module projectPlate(x, y, z)
+module projectPlate()
 {
     $fn = 90; //make the circle smoother
 
@@ -41,7 +41,10 @@ module projectPlate(x, y, z)
         square([plateWidth, plateDepth]);
         holeGrid(holeDia / 2);
     };
+    
 }
+
+projectplate();
 
 //Project Plate
 //Eric Moderbacher
