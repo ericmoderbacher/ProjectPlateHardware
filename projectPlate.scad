@@ -44,7 +44,7 @@ module projectPlate()
     
 }
 
-projectplate();
+projectPlate();
 
 //Project Plate
 //Eric Moderbacher
