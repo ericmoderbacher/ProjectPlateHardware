@@ -33,8 +33,15 @@ cornerRadius = 0;
                 {
                     translate([(extrusionWidth/2)-(slotDepth/2),0,0])
                     {
-                        square([slotMouthWidth,slotDepth],true);
-                        square([slotDepth-dumbSlotDepth,slotWidthWidest],true);
+                        hull()
+                        {
+                            square([slotDepth-dumbSlotDepth,slotWidthWidest],true);
+                            translate([-slotDepth/4,0,0])square([slotDepth/2, slotMouthWidth],true);
+                        
+                            
+                        }
+                        square([slotDepth, slotMouthWidth],true);
+                        
                     }
                 }
             }
@@ -42,7 +49,14 @@ cornerRadius = 0;
     }
 }
 
-tSlotExtrusion();
+module gusset()
+{
+
+
+
+}
+
+tSlotExtrusion(100);
 
 //T Slot Extrusion
 //Eric Moderbacher
