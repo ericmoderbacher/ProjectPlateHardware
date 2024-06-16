@@ -14,9 +14,9 @@ holeDia = 5;
 //measuments in mm end
 
 //missing from drawing
-cornerRadius = 0;
+cornerRadius = 1.5;
 
-
+ $fn=50;
 
  module tSlotExtrusion(length) 
 {
@@ -24,7 +24,11 @@ cornerRadius = 0;
     {
         difference()
         {
-            square([extrusionWidth, extrusionWidth], true);
+            minkowski()
+            {
+              square([extrusionWidth-(cornerRadius), extrusionWidth-(cornerRadius)],true);
+              circle(d=cornerRadius);
+            }
             circle(d = holeDia);
 
             for(i = [0,90,180,270])
@@ -41,7 +45,6 @@ cornerRadius = 0;
                             
                         }
                         square([slotDepth, slotMouthWidth],true);
-                        
                     }
                 }
             }
@@ -49,14 +52,9 @@ cornerRadius = 0;
     }
 }
 
-module gusset()
-{
 
 
-
-}
-
-tSlotExtrusion(100);
+//tSlotExtrusion(100);
 
 //T Slot Extrusion
 //Eric Moderbacher
