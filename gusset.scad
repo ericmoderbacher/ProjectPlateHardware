@@ -4,17 +4,12 @@ gussetContactLength = 40;
 
 module 0th() 
 {
- echo( "let there be light"); //well for this program anyways
- 
- // also a good place to explain whats going on here.
- // this branch of the code is to test out an idea where i use numbers as function names.
- 
- // i guess a function pointer is also a way we already use numbers as names but in that case i dont know how often we get to pick the order of the pointer value when it compiled
+ //echo( "hello world!"); //well for this program anyways
 }
 
-module 1th()
+module 1th(littleExtra = 0)
 {
-cube([extrusionWidth + 4,5,gussetContactLength],true);
+cube([extrusionWidth + 4,5+littleExtra,gussetContactLength+littleExtra],true);
 0th(); //aw i dont have to include this for things to work thats cute
 }
 
@@ -23,12 +18,11 @@ module 2th()
     difference()
     {        
         1th();
-        
         hull()
         {
             intersection()
             {
-                1th();
+                1th(littleExtra = 1);
                 translate([0,-10,-gussetContactLength])tSlotExtrusion(100);
             }
         }
@@ -61,13 +55,32 @@ module 4th()
     }
 }
 
-module lastth()
+module 5th(shift = 1)
 {
-    4th();
+    difference()
+    {
+        4th();
+        cube([extrusionWidth,1000,1000],true);
+        translate([(extrusionWidth/2)*shift,0,0])cube([extrusionWidth, 1000,1000],true);
+    }
+
+
 }
+module 6th(shift = 1)
+{
+    union()
+    {
+        4th();
+        hull()5th();
+        hull()5th(-1);
+    }
+    
+
+}
+
 module nth(){
 //you update this when you add the a newer function on top of it. (or have the compiler set it using the highest numbered function here.
-4th();
+6th();
 
 }
 
