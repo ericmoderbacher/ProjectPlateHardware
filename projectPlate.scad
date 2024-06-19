@@ -1,3 +1,5 @@
+plateHeight =  7.0;
+
 module projectPlate()
 {
     $fn = 90; //make the circle smoother
@@ -11,7 +13,7 @@ module projectPlate()
     holeDia = 8.0;
     holeSpacing = 10.0;
 
-    plateHeight =  7.0;
+
     // Measurments in millimeters end
 
     //counts
@@ -43,8 +45,6 @@ module projectPlate()
     };
     
 }
-
-projectPlate();
 
 //Project Plate
 //Eric Moderbacher
