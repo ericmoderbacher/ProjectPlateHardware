@@ -18,43 +18,56 @@ cornerRadius = 1.5;
 
  $fn=50;
 
- module tSlotExtrusion(length) 
+module aCorner(i)
 {
-    linear_extrude(length)
-    {
-        difference()
+    translate([(extrusionWidth/2)-(slotDepth/2),0,0])
         {
-            minkowski()
-            {
-              square([extrusionWidth-(cornerRadius), extrusionWidth-(cornerRadius)],true);
-              circle(d=cornerRadius);
-            }
-            circle(d = holeDia);
-
-            for(i = [0,90,180,270])
-            {
-                rotate([0,0,i])
+            hull()
                 {
-                    translate([(extrusionWidth/2)-(slotDepth/2),0,0])
-                    {
-                        hull()
-                        {
-                            square([slotDepth-dumbSlotDepth,slotWidthWidest],true);
-                            translate([-slotDepth/4,0,0])square([slotDepth/2, slotMouthWidth],true);
-                        
-                            
-                        }
-                        square([slotDepth, slotMouthWidth],true);
-                    }
+                    square([slotDepth-dumbSlotDepth,slotWidthWidest],true);
+                    translate([-slotDepth/4,0,0])square([slotDepth/2, slotMouthWidth],true);
                 }
-            }
+            square([slotDepth, slotMouthWidth],true);
         }
+}
+
+module theCorners()
+{
+    for(i = [0,90,180,270])
+    {
+        rotate([0,0,i])
+            {
+                aCorner(i);
+            }
     }
 }
 
 
+module tSlotProfile(length)
+{
+    difference()
+    {
+        minkowski()
+        {
+          square([extrusionWidth-(cornerRadius), extrusionWidth-(cornerRadius)],true);
+          circle(d=cornerRadius);
+        }
+        
+        circle(d = holeDia);
+        theCorners();
+    }
+}
 
-//tSlotExtrusion(100);
+
+module tSlotExtrusion(length)
+{
+    linear_extrude(length)
+    {
+    tSlotProfile();
+    }
+}
+
+tSlotExtrusion(100);
 
 //T Slot Extrusion
 //Eric Moderbacher
