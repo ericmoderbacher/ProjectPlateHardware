@@ -1,9 +1,5 @@
 plateHeight =  7.0;
 
-module projectPlate()
-{
-    $fn = 90; //make the circle smoother
-
     // Measurements in millimeters. 
     topMargin = 7.0; 
     rightMargin = 4.0;
@@ -27,6 +23,12 @@ module projectPlate()
     plateWidth = leftMargin + rightMargin + (numberOfColumns * holeDia) + ((numberOfColumns - 1) * spanBetweenHoles);
     plateDepth = topMargin + bottomMargin + (numberOfRows * holeDia) + ((numberOfRows - 1) * spanBetweenHoles);
     //calculated values end
+
+
+module projectPlate()
+{
+    $fn = 90; //make the circle smoother
+
 
     module holeGrid(radius)
     {

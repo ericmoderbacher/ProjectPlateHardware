@@ -61,13 +61,13 @@ module tSlotProfile(length)
 
 module tSlotExtrusion(length)
 {
-    linear_extrude(length)
+    linear_extrude(height = length, convexity = 20)
     {
     tSlotProfile();
     }
 }
 
-tSlotExtrusion(100);
+//tSlotExtrusion(100);
 
 //T Slot Extrusion
 //Eric Moderbacher

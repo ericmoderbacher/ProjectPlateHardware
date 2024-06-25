@@ -15,9 +15,6 @@ cube([extrusionWidth + 4,5+littleExtra,gussetContactLength+littleExtra],true);
 
 module 2th()
 {
-    difference()
-    {        
-        1th();
         hull()
         {
             intersection()
@@ -26,20 +23,28 @@ module 2th()
                 translate([0,-10,-gussetContactLength])tSlotExtrusion(100);
             }
         }
+}
+
+module 3th()
+{
+    difference()
+    {        
+        1th();
+        2th();
     }
 }
 
-module 3th() 
+module 4th() 
 {
     difference()
     {
-        rotate([90,0,0])2th();
+        rotate([90,0,0])3th();
         translate([0,-10, -.50])cylinder(h=6,d = 5,true);
         translate([0, 10, -.50])cylinder(h=6,d = 5,true);
     }
 }
 
-module 4th()
+module 5th()
 {
     intersection()
     {
@@ -47,32 +52,32 @@ module 4th()
         {
             union()
             {
-                3th();
-                translate([0,gussetContactLength/2,gussetContactLength/2])rotate([90,0,0])3th();
+                4th();
+                translate([0,gussetContactLength/2,gussetContactLength/2])rotate([90,0,0])4th();
             }
         }
         translate([-50,-50,-sqrt(pow(10,2)+pow(10,2))])cube([100,100,40],false); //
     }
 }
 
-module 5th(shift = 1)
+module 6th(shift = 1)
 {
     difference()
     {
-        4th();
+        5th();
         cube([extrusionWidth,1000,1000],true);
         translate([(extrusionWidth/2)*shift,0,0])cube([extrusionWidth, 1000,1000],true);
     }
 
 
 }
-module 6th(shift = 1)
+module 7th(shift = 1)
 {
     union()
     {
-        4th();
-        hull()5th();
-        hull()5th(-1);
+        5th();
+        hull()6th();
+        hull()6th(-1);
     }
     
 
@@ -80,7 +85,7 @@ module 6th(shift = 1)
 
 module nth(){
 //you update this when you add the a newer function on top of it. (or have the compiler set it using the highest numbered function here.
-6th();
+7th();
 
 }
 
